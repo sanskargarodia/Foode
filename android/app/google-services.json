@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "4327220494",
+    "project_id": "foode-e0dd3",
+    "storage_bucket": "foode-e0dd3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:4327220494:android:38e7c0610629dfc73f635f",
+        "android_client_info": {
+          "package_name": "com.example.foode"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "4327220494-ncfjet384r4sad5r72oaeffcdv6rarfq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.foode",
+            "certificate_hash": "f1763e48382057bd0e30278cd91dad5ab2461894"
+          }
+        },
+        {
+          "client_id": "4327220494-1d042mb21et5o01atohkh3mprhgjjdfi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPoFB8uI-qJb6WoEv5fOHJ-sm4VZbD8go"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "4327220494-1d042mb21et5o01atohkh3mprhgjjdfi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
