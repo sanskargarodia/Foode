@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food/all_foods.dart';
 import 'package:food/all_restraunts.dart';
-import 'package:food/data/foodata.dart';
+import 'package:food/models/foodata.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:food/widgets/food_category.dart';
+
 
 
 class Homescreen extends StatefulWidget {
@@ -36,14 +38,13 @@ class _HomescreenState extends State<Homescreen> {
                       fontSize: 32.0, fontWeight: FontWeight.bold,)),
                   ],
                 ),
-                TextButton(
-                  style: ButtonStyle(
-                    foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-                  ),
+                IconButton(
+                  icon: Icon(Icons.exit_to_app, color: Colors.black),
                   onPressed: signOut,
                 )
               ],
             ),
+            FoodCategory(),
             SizedBox(height: 20,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -83,7 +84,7 @@ class _HomescreenState extends State<Homescreen> {
   }
   Widget _finalRestraunt(Restraunt restraunt){
     return Container(
-      margin: EdgeInsets.only(bottom: 0),
+      margin: EdgeInsets.only(bottom: 20.0),
       child: allfoods(
         id: restraunt.name,
         name: restraunt.name,

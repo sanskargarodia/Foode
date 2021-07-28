@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'package:firebase_core/firebase_core.dart';
 class SignUp extends StatefulWidget {
   const SignUp({Key key}) : super(key: key);
 
@@ -9,12 +9,12 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+   FirebaseAuth _auth = FirebaseAuth.instance;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String _email, _password, _name;
 
   checkAuthentication() async {
-    _auth.onAuthStateChanged.listen((user) async {
+    _auth.authStateChanges().listen((user) async {
       if (user != null) {
         Navigator.pushReplacementNamed(context, "/");
       }
@@ -31,13 +31,10 @@ class _SignUpState extends State<SignUp> {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
       try {
-        dynamic user = await _auth.createUserWithEmailAndPassword(
+        UserCredential user = await _auth.createUserWithEmailAndPassword(
             email: _email, password: _password);
         if (user != null) {
-          UserUpdateInfo updateInfo = UserUpdateInfo();
-          updateInfo.displayName = _name;
-          user.updateProfile(updateInfo);
-          // await _auth.currentUser.updateProfile(displayName: _name);
+          await _auth.currentUser.updateProfile(displayName: _name);
         }
       } catch (e) {
         showerror(e.message);

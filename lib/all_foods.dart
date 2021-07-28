@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food/widgets/restraunt_details.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 class allfoods extends StatefulWidget {
   final String id;
   final String name;
@@ -15,6 +16,7 @@ class _allfoodsState extends State<allfoods> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      borderRadius: BorderRadius.circular(40),
       onTap: (){Navigator.push(
         context,
         MaterialPageRoute(
@@ -24,20 +26,36 @@ class _allfoodsState extends State<allfoods> {
       child: Stack(
         children: [
           Container(
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
             height: 200,
             width:340,
-            child: Image.asset(widget.imagePath,fit: BoxFit.cover,),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10.0),
+              child: Image.asset(
+                widget.imagePath,
+                width: 110.0,
+                height: 110.0,
+                fit: BoxFit.fill,
+              ),
+            ),
           ),
           Positioned(
             left:0,
             bottom: 0,
-            child: Container(
-              height: 60,
-              width: 340,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Colors.black,Colors.black12]
-                )
+            child: Opacity(
+              opacity: 0.3,
+              child: Container(
+                height: 60,
+                width: 340,
+                decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(10.0),
+                    bottomLeft: Radius.circular(10.0)
+                ),
+                  gradient: LinearGradient(
+                    colors: [Colors.black,Colors.black12]
+                  )
+                ),
               ),
             ),
           ),
@@ -47,6 +65,7 @@ class _allfoodsState extends State<allfoods> {
             child: Row(
               children: [
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(widget.name,
                     style: TextStyle(
@@ -54,7 +73,23 @@ class _allfoodsState extends State<allfoods> {
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),),
-                    Icon(Icons.star_border)
+                    RatingBar.builder(
+                      initialRating: 3,
+                      minRating: 1,
+                      direction: Axis.horizontal,
+                      allowHalfRating: true,
+                      itemCount: 5,
+                      itemSize: 20,
+                      itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                      itemBuilder: (context, _) => Icon(
+                        Icons.star,
+                        color: Colors.amber,
+                      ),
+                      onRatingUpdate: (rating) {
+                        print(rating);
+                      },
+                    )
+
                   ],
                 )
               ],

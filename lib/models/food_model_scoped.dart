@@ -11,8 +11,8 @@ final rests=[
   Rest(
       id: "2",
       title: "hello",
-      area: "Mcd",
-      imagePath: "data/burger.jpg",
+      area: "The Idly Shop ",
+      imagePath: "data/idli.jpg",
       type: "fastfood"
   ),
   Rest(

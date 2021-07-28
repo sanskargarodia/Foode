@@ -68,7 +68,6 @@ class _PastOrderListView extends StatelessWidget {
         ListView.builder(
           shrinkWrap: true,
           itemCount: restaurants.length,
-          physics: NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) => _PastOrdersListItemView(
             restaurant: restaurants[index],
             foodItem: foods[index],

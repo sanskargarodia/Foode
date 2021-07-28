@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food/ordercart.dart';
+import 'package:food/widgets/ordercart.dart';
 class Cart extends StatefulWidget {
   @override
   _CartState createState() => _CartState();
@@ -19,8 +19,15 @@ class _CartState extends State<Cart> {
         padding: EdgeInsets.symmetric(horizontal: 10),
         scrollDirection: Axis.vertical,
         children: [
-          Ordercard(),
-          Ordercard(),
+          Ordercart(),
+          Ordercart(),
+          Ordercart(),
+          Ordercart(),
+          Ordercart(),
+          Ordercart(),
+          Ordercart(),
+          Ordercart(),
+
         ],
       ),
       bottomNavigationBar: _buildTotalContainer(),
@@ -28,8 +35,9 @@ class _CartState extends State<Cart> {
   }
   Widget _buildTotalContainer() {
     return Container(
-      height: 220.0,
+      height: 230.0,
       padding: EdgeInsets.only(
+        top: 10,
         left: 10.0,
         right: 10.0,
       ),

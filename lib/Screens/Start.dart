@@ -1,26 +1,24 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'Login.dart';
-import 'SignUp.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class Start extends StatefulWidget {
-  const Start({Key key}) : super(key: key);
+  // const Start({Key key}) : super(key: key);
 
   @override
   _StartState createState() => _StartState();
 }
-// navigateToLogin() async{
-//   Navigator.push(context, MaterialPageRoute(builder: context => Login()));
-// }
 
 class _StartState extends State<Start> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
   navigateToLogin() async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
+    Navigator.pushReplacementNamed(context, "Login");
   }
 
   navigateToRegister() async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
+    Navigator.pushReplacementNamed(context, "SignUp");
   }
 
   @override
@@ -47,14 +45,14 @@ class _StartState extends State<Start> {
                         fontWeight: FontWeight.bold,
                         color: Colors.black),
                     children: <TextSpan>[
-                  TextSpan(
-                    text: " FOODE",
-                    style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.yellow),
-                  )
-                ])),
+                      TextSpan(
+                        text: " FOODE",
+                        style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.yellow),
+                      )
+                    ])),
             SizedBox(
               height: 20.0,
             ),

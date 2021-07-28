@@ -3,6 +3,7 @@ import 'package:food/mainscreen.dart';
 import 'Screens/SignUp.dart';
 import 'Screens/Start.dart';
 import 'Screens/Login.dart';
+import 'package:firebase_core/firebase_core.dart';
 class App extends StatelessWidget {
   const App({Key key}) : super(key: key);
 

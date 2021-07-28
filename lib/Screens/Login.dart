@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
+// import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food/Screens/SignUp.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -14,24 +15,25 @@ class _LoginState extends State<Login> {
 
   //checking user is already logged in
   checkAuthentication() async {
-    _auth.onAuthStateChanged.listen((user) {
+    _auth.authStateChanges().listen((user) {
       if (user != null) {
         Navigator.pushReplacementNamed(context, "/");
       }
     });
-    @override
+  }
+
+  @override
     void initState() {
       super.initState();
       this.checkAuthentication();
     }
-  }
 
   login() async {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
       try {
-        FirebaseUser user = (await _auth.signInWithEmailAndPassword(
-            email: _email, password: _password)) as FirebaseUser;
+        await _auth.signInWithEmailAndPassword(
+            email: _email, password: _password);
       } catch (e) {
         showerror(e.message);
       }
@@ -56,12 +58,16 @@ class _LoginState extends State<Login> {
         });
   }
 
+  navigateToRegister() async {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          color: Colors.blueGrey,
+          color: Colors.white,
           child: Column(
             children: [
               Container(
@@ -125,6 +131,9 @@ class _LoginState extends State<Login> {
                         ),
                         color: Colors.cyan,
                       ),
+                      GestureDetector(
+                          child: Text('Create an Account?'),
+                          onTap: navigateToRegister)
                     ],
                   ),
                 ),

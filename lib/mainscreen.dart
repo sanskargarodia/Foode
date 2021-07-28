@@ -5,6 +5,7 @@ import 'package:food/pages/searchpage.dart';
 import 'package:food/pages/profilepage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+
 class Bb extends StatefulWidget {
   @override
   _BbState createState() => _BbState();
@@ -12,21 +13,21 @@ class Bb extends StatefulWidget {
 
 class _BbState extends State<Bb> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  FirebaseUser user;
+  User user;
   bool isloggedin = false;
 
   checkAuthentication() async {
-    _auth.onAuthStateChanged.listen((user) {
+    _auth.authStateChanges().listen((user) {
       if (user == null) {
-        Navigator.pushReplacementNamed(context, "start");
+        Navigator.of(context).pushReplacementNamed("start");
       }
     });
   }
 
   getUser() async {
-    FirebaseUser firebaseUser = await _auth.currentUser();
+    User firebaseUser = _auth.currentUser;
     await firebaseUser?.reload();
-    firebaseUser = await _auth.currentUser();
+    firebaseUser = _auth.currentUser;
     if (firebaseUser != null) {
       setState(() {
         this.user = firebaseUser;
@@ -51,6 +52,7 @@ class _BbState extends State<Bb> {
     // TODO: implement initState
     super.initState();
     this.checkAuthentication();
+    this.getUser();
     homescreen= Homescreen();
     searchpage=Search();
     cartpage=Cart();
